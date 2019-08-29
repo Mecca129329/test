@@ -1,0 +1,77 @@
+-   config:
+        name: testcase description
+        variables: {}
+        verify: false
+
+-   test:
+        name: /v1/index
+        request:
+            headers:
+                User-Agent: okhttp/3.12.0
+                app-version: 2.3.0
+                city: gz
+                cityId: '1'
+                device-address: '%E4%B8%AD%E5%9B%BD%E5%B9%BF%E4%B8%9C%E7%9C%81%E5%B9%BF%E5%B7%9E%E5%B8%82%E5%A4%A9%E6%B2%B3%E5%8C%BA%E5%A4%A9%E6%BA%90%E8%B7%AF140%E5%8F%B7'
+                device-channel: '3'
+                device-id: 7a36b1aff7f8796b6457bf2b673cf311
+                device-ip: 192.168.21.154
+                device-lang: zh_CN
+                device-lat: '23.179345'
+                device-lon: '113.347352'
+                device-net: '3'
+                device-size: 1080*1920
+                device-token: AggVdYfbMmjqGS6EsENfjvhv8uemi2AmKyNCHZOA8EIw
+                device-type: vivo+vivo+X9
+                device-type2: '2'
+                device-version: 7.1.2
+                os: '2'
+                registerSource: '1'
+                secret: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2dmljX2FuZHJvaWQiLCJleHAiOjE1NjY1NjA3NjcsImlzcyI6InZ2aWMuY29tIn0.Xfs91Jol3YWSAvQnwqEm6mXM9fb1xr4eROE_ypz1zRs
+            method: GET
+            params:
+                currentPage: '1'
+                pageSize: '10'
+                secret: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2dmljX2FuZHJvaWQiLCJleHAiOjE1NjY1NjA3NjcsImlzcyI6InZ2aWMuY29tIn0.Xfs91Jol3YWSAvQnwqEm6mXM9fb1xr4eROE_ypz1zRs
+            url: https://app-test.vvic.com/v1/index
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            - application/json;charset=UTF-8
+        -   eq:
+            - content.code
+            - 200
+        -   eq:
+            - content.message
+            - success
+
+-   test:
+        name: /m/city-market-list
+        request:
+            headers:
+                User-Agent: Mozilla/5.0 (Linux; Android 7.1.2; vivo X9 Build/N2G47H;
+                    wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91
+                    Mobile Safari/537.36/#vvic#device-channel=3#app-version=2.3.0
+                X-Requested-With: com.weisheng.vvic
+                city: gz
+                cityId: '1'
+                device-channel: ''
+                device-id: ''
+                platform: m
+            method: GET
+            url: https://app-test.vvic.com/m/city-market-list
+        validate:
+        -   eq:
+            - status_code
+            - 200
+        -   eq:
+            - headers.Content-Type
+            - application/json;charset=UTF-8
+        -   eq:
+            - content.code
+            - 200
+        -   eq:
+            - content.message
+            - success
